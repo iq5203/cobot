@@ -1,0 +1,4 @@
+[submodule "navigation2"]
+	path = navigation2
+	url = git@github.com:ros-navigation/navigation2.git
+	branch = jazzy
