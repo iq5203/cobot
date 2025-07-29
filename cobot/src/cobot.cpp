@@ -14,19 +14,20 @@ int main(int argc, char ** argv) {
 
   rclcpp::init(argc, argv);
 
-  factory.registerNodeType<EstopAction>("EstopAction");
-  factory.registerNodeType<StopAction>("StopAction");
-  factory.registerNodeType<SlowAction>("SlowAction");
-  factory.registerNodeType<FullSpeedAction>("FullSpeedAction");
+  factory.registerNodeType<cobot::EstopAction>("EstopAction");
+  factory.registerNodeType<cobot::StopAction>("StopAction");
+  factory.registerNodeType<cobot::SlowAction>("SlowAction");
+  factory.registerNodeType<cobot::FullSpeedAction>("FullSpeedAction");
 
   auto tree = std::make_shared<BT::Tree>(factory.createTreeFromFile(share_dir + "/behavior_trees/Cobot_BT.xml"));
 
-  auto cbNode = std::make_shared<CobotNode>(tree);
+  auto cbNode = std::make_shared<cobot::CobotNode>(tree);
   
   tree->rootBlackboard()->set("range", -1);
   tree->rootBlackboard()->set("estop", true);
 
   rclcpp::Duration cycleTime{std::chrono::milliseconds(200)};
+  
   while (true) {
     rclcpp::Time start = cbNode->get_clock()->now();
     rclcpp::spin_some(cbNode);

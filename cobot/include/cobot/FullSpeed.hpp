@@ -2,6 +2,7 @@
 
 #include "behaviortree_cpp/bt_factory.h"
 
+namespace cobot {
 class FullSpeedAction : public BT::SyncActionNode
 {
 public:
@@ -15,3 +16,4 @@ static BT::PortsList providedPorts();
 private:
   int m_range;
 };
+}

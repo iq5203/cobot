@@ -2,6 +2,7 @@
 
 #include "behaviortree_cpp/bt_factory.h"
 
+namespace cobot {
 class SlowAction : public BT::SyncActionNode
 {
 public:
@@ -15,3 +16,4 @@ public:
 private:
   int m_range;
 };
+}

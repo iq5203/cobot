@@ -1,4 +1,4 @@
-#include <memory>
+#pragma once
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -8,6 +8,7 @@
 
 #include "behaviortree_cpp/bt_factory.h"
 
+namespace cobot {
 class CobotNode : public rclcpp::Node {
 public:
     CobotNode(std::shared_ptr<BT::Tree> tree);
@@ -22,4 +23,4 @@ private:
     void estopCallback(const std_msgs::msg::Bool::SharedPtr msg);
     void rangeCallback(const std_msgs::msg::Int16::SharedPtr msg);
 };
-
+}

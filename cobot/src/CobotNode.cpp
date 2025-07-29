@@ -1,5 +1,6 @@
 #include "cobot/CobotNode.hpp"
 
+namespace cobot {
 CobotNode::CobotNode(std::shared_ptr<BT::Tree> tree): 
 Node("cobot"),
 m_tree(tree) {
@@ -27,4 +28,5 @@ void CobotNode::estopCallback(const std_msgs::msg::Bool::SharedPtr msg) {
 
 void CobotNode::rangeCallback(const std_msgs::msg::Int16::SharedPtr msg) {
     m_tree->rootBlackboard()->set("range", msg->data);
+}
 }

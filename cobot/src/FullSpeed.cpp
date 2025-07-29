@@ -1,6 +1,6 @@
 #include "cobot/FullSpeed.hpp"
-#include <time.h>
 
+namespace cobot {
 FullSpeedAction::FullSpeedAction(const std::string &name, const BT::NodeConfig &config) :
     BT::SyncActionNode(name, config), 
     m_range(0) {}
@@ -27,4 +27,5 @@ BT::PortsList FullSpeedAction::providedPorts() {
   return { BT::InputPort<short>("range"),
             BT::OutputPort<std::string>("speed")
           };
+}
 }

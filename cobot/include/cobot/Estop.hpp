@@ -4,7 +4,7 @@
 #include "std_msgs/msg/bool.hpp"
 #include "behaviortree_cpp/action_node.h"
 
-
+namespace cobot {
 class EstopAction : public BT::SyncActionNode
 {
 public:
@@ -18,3 +18,4 @@ public:
 private:
     bool m_estop;
 };
+}
