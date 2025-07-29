@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.3)
-project(BehaviorTree VERSION 4.7.2 LANGUAGES C CXX)
+project(behaviortree_cpp VERSION 4.7.2 LANGUAGES C CXX)
 
 # create compile_commands.json
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -158,7 +158,9 @@ if (BTCPP_SHARED_LIBS)
     add_library(${BTCPP_LIBRARY} SHARED ${BT_SOURCE})
 else()
     set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-    add_library(${BTCPP_LIBRARY} STATIC ${BT_SOURCE})
+    add_library(${BTCPP_LIBRARY} SHARED ${BT_SOURCE})
+
+#    add_library(${BTCPP_LIBRARY} STATIC ${BT_SOURCE})
 endif()
 
 message(STATUS "BTCPP_EXTRA_LIBRARIES: ${BTCPP_EXTRA_LIBRARIES}")
@@ -242,6 +244,16 @@ INSTALL(TARGETS ${BTCPP_LIBRARY}
     INCLUDES DESTINATION ${BTCPP_INCLUDE_DESTINATION}
     )
 
+INSTALL(TARGETS ${BTCPP_LIBRARY}
+        DESTINATION lib/${BTCPP_LIBRARY}
+        EXPORT ${BTCPP_LIBRARY}-targets
+    )
+
+install(EXPORT ${BTCPP_LIBRARY}Targets
+        FILE ${BTCPP_LIBRARY}Targets.cmake
+        NAMESPACE ${BTCPP_LIBRARY}::
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${BTCPP_LIBRARY}
+)
 INSTALL( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/include/
     DESTINATION ${BTCPP_INCLUDE_DESTINATION}
     FILES_MATCHING PATTERN "*.h*")
@@ -258,4 +270,6 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+ament_export_include_directories(include)
+ament_export_libraries(${BTCPP_LIBRARY})
 ament_package()
