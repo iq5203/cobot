@@ -1,15 +1,14 @@
-#include "cobot/Stop.hpp"
+#include "cobot/SlowAction.hpp"
 
 #include <time.h>
 
 namespace cobot {
-StopAction::StopAction(const std::string &name, const BT::NodeConfig &config) :
+SlowAction::SlowAction(const std::string &name, const BT::NodeConfig &config) :
     BT::SyncActionNode(name, config), 
     m_range(0) {}
 
-// You must override the virtual function tick()
-BT::NodeStatus StopAction::tick() {
-  auto rangeInput = getInput<int16_t>("range");
+BT::NodeStatus SlowAction::tick() {
+  auto rangeInput = getInput<int>("range");
 
   if (rangeInput) {
     m_range = rangeInput.value();
@@ -19,15 +18,17 @@ BT::NodeStatus StopAction::tick() {
   
   if (m_range < 400) {
     setOutput("speed", "STOP");
+    return BT::NodeStatus::FAILURE;
+  } else if (m_range < 800) {
+    setOutput("speed", "SLOW");
     return BT::NodeStatus::SUCCESS;
   } else {
     return BT::NodeStatus::FAILURE;
-  }  
+  }
 }
 
-BT::PortsList StopAction::providedPorts()
-{
-  return { BT::InputPort<int16_t>("range"),
+BT::PortsList SlowAction::providedPorts() {
+  return { BT::InputPort<short>("range"),
             BT::OutputPort<std::string>("speed")
           };
 }

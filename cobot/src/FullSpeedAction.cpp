@@ -1,4 +1,4 @@
-#include "cobot/FullSpeed.hpp"
+#include "cobot/FullSpeedAction.hpp"
 
 namespace cobot {
 FullSpeedAction::FullSpeedAction(const std::string &name, const BT::NodeConfig &config) :

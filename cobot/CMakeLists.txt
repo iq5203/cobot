@@ -21,7 +21,7 @@ include_directories(include
 ${behaviortree_cpp_INCLUDE_DIRS}
 )
 
-add_executable(${PROJECT_NAME} src/cobot.cpp src/Estop.cpp src/Stop.cpp src/Slow.cpp src/FullSpeed.cpp src/CobotNode.cpp)
+add_executable(${PROJECT_NAME} src/cobot.cpp src/EstopAction.cpp src/StopAction.cpp src/SlowAction.cpp src/FullSpeedAction.cpp src/CobotNode.cpp)
 ament_target_dependencies(${PROJECT_NAME} behaviortree_cpp rclcpp std_msgs)
 target_link_libraries(${PROJECT_NAME} ${behaviortree_cpp_LIBRARIES})
 target_include_directories(cobot PUBLIC

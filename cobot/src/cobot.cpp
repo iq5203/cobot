@@ -2,10 +2,10 @@
 
 #include "behaviortree_cpp/bt_factory.h"
 
-#include "cobot/Estop.hpp"
-#include "cobot/Stop.hpp"
-#include "cobot/Slow.hpp"
-#include "cobot/FullSpeed.hpp"
+#include "cobot/EstopAction.hpp"
+#include "cobot/StopAction.hpp"
+#include "cobot/SlowAction.hpp"
+#include "cobot/FullSpeedAction.hpp"
 #include "cobot/CobotNode.hpp"
 
 int main(int argc, char ** argv) {

@@ -1,4 +1,4 @@
-#include "cobot/Estop.hpp"
+#include "cobot/EstopAction.hpp"
 
 #include <time.h>
 
