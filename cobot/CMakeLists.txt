@@ -7,18 +7,35 @@ endif()
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+
+find_package(rclcpp REQUIRED)
+find_package(std_msgs REQUIRED)
+
+find_package(behaviortree_cpp REQUIRED)
+
 # uncomment the following section in order to fill in
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(cobot src/cobot.cpp)
+include_directories(include
+${behaviortree_cpp_INCLUDE_DIRS}
+)
+
+add_executable(${PROJECT_NAME} src/cobot.cpp src/Estop.cpp src/Stop.cpp src/Slow.cpp src/FullSpeed.cpp src/CobotNode.cpp)
+ament_target_dependencies(${PROJECT_NAME} behaviortree_cpp rclcpp std_msgs)
+target_link_libraries(${PROJECT_NAME} ${behaviortree_cpp_LIBRARIES})
 target_include_directories(cobot PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include/${PROJECT_NAME}>)
 target_compile_features(cobot PUBLIC c_std_99 cxx_std_17)  # Require C99 and C++17
 
-install(TARGETS cobot
+install(TARGETS 
+	cobot
   DESTINATION lib/${PROJECT_NAME})
+
+install(DIRECTORY
+        behavior_trees
+        DESTINATION share/${PROJECT_NAME}/)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

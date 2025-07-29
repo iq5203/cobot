@@ -1,0 +1,12 @@
+ <root BTCPP_format="4" >
+    <BehaviorTree ID="CobotTree">
+        <Sequence>
+            <Fallback name="fallback">
+                <EstopAction estop="{estop}" speed="{speed}"/>
+                <StopAction  range="{range}" speed="{speed}"/>
+                <SlowAction  range="{range}" speed="{speed}"/>
+                <FullSpeedAction range="{range}" speed="{speed}" />
+            </Fallback>
+        </Sequence>
+    </BehaviorTree>
+ </root>
