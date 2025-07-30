@@ -1,17 +1,32 @@
 #pragma once
 
+#include <string>
+
 #include "behaviortree_cpp/bt_factory.h"
 
 namespace cobot {
-class StopAction : public BT::SyncActionNode
-{
+
+/**
+ * When ticked, this action checks the blackboard input "range". If the range 
+ * is less than 400, output a speed of STOP to blackboard port "speed" 
+ * and return success to indicate speed has been set.  Otherwise return 
+ * failure.  If no input, output a speed of STOP to blackboard port "speed" 
+ */
+
+class StopAction : public BT::SyncActionNode {
 public:
   StopAction(const std::string& name, const BT::NodeConfig &config);
+
   BT::NodeStatus tick() override;
 
+  /**
+ * Assumes an integer "range" input port configured in behavior tree.
+ * Assumes a string "speed" output port configured in behavior tree.
+ */
   static BT::PortsList providedPorts();
 
 private:
-  int m_range;
+  int m_range{0};
 };
-}
+
+}  // namespace cobot
