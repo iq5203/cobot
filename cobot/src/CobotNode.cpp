@@ -19,9 +19,14 @@ CobotNode::CobotNode(const std::shared_ptr<BT::Tree> &tree):
 void CobotNode::tick() {
     m_tree->tickExactlyOnce();
     std::string speed;
-    m_tree->rootBlackboard()->get("speed", speed);
+    bool hasSpeed = m_tree->rootBlackboard()->get("speed", speed);
     auto message = std_msgs::msg::String();
-    message.data = speed;
+    if (hasSpeed) {
+      message.data = speed;
+    } else {
+      message.data = "STOP";
+    }
+
     m_speedPublisher->publish(message);
 }
 
