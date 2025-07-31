@@ -33,7 +33,7 @@ int main(int argc, char ** argv) {
 
   /** Set initial blackboard values to estop by default */
 
-  RCLCPP_DEBUG_STREAM(logger, "Initializing range to -1 and estop to true");
+  RCLCPP_INFO_STREAM(logger, "Initializing range to -1 and estop to true");
 
   tree->rootBlackboard()->set("range", -1);
   tree->rootBlackboard()->set("estop", true);
@@ -72,7 +72,7 @@ int main(int argc, char ** argv) {
     }
   }
 
-  RCLCPP_DEBUG_STREAM(logger, "Shutting down system");
+  RCLCPP_INFO_STREAM(logger, "Shutting down system");
   /** Clean up ROS2 */
   rclcpp::shutdown();
   return 0;
