@@ -40,6 +40,8 @@ private:
   rclcpp::Subscription<std_msgs::msg::Int16>::SharedPtr m_rangeSubscription;
 
   rclcpp::Publisher<std_msgs::msg::String>::SharedPtr m_speedPublisher;
+  rclcpp::Publisher<std_msgs::msg::String>::SharedPtr m_estopPublisher;
+  bool m_estop{true};
 
   /** 
    * Called when ROS2 "estop" topic is updated.  Forwards new value to 
