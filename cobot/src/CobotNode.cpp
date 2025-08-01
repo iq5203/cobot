@@ -32,7 +32,7 @@ void CobotNode::tick() {
     RCLCPP_WARN_STREAM(get_logger(), "Publishing estop on");
     estopMessage.data = "ESTOP";
   } else {
-    RCLCPP_WARN_STREAM(get_logger(), "Publishing estop off");
+    RCLCPP_DEBUG_STREAM(get_logger(), "Publishing estop off");
     estopMessage.data = "RUN";
   }
   m_estopPublisher->publish(estopMessage);

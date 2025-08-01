@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "rclcpp/rclcpp.hpp"
+
 #include "behaviortree_cpp/bt_factory.h"
 
 namespace cobot {
@@ -27,6 +29,7 @@ public:
 
 private:
   int m_range{0};
+  rclcpp::Logger m_logger;
 };
 
 }  // namespace cobot

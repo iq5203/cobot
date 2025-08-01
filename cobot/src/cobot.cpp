@@ -9,6 +9,7 @@
 #include "cobot/CobotNode.hpp"
 
 int main(int argc, char ** argv) {
+  rclcpp::init(argc, argv);
 
   std::string share_dir = ament_index_cpp::get_package_share_directory("cobot");
   BT::BehaviorTreeFactory factory;
@@ -24,7 +25,6 @@ int main(int argc, char ** argv) {
     "/behavior_trees/Cobot_BT.xml"));
 
   /** initialize ROS2 node */
-  rclcpp::init(argc, argv);
   auto logNode = std::make_shared<rclcpp::Node>("logger");
   auto logger = logNode->get_logger();
 

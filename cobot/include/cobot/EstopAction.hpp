@@ -2,6 +2,8 @@
 
 #include <string>
 
+#include "rclcpp/rclcpp.hpp"
+
 #include "behaviortree_cpp/action_node.h"
 
 namespace cobot {
@@ -26,6 +28,7 @@ public:
 
 private:
     bool m_estop{true};
+    rclcpp::Logger m_logger;
 };
 
 }  // namespace cobot
